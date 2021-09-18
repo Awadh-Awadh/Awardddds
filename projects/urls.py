@@ -7,4 +7,4 @@ urlpatterns = [
 #   path('projects/',views.all-projects, name = 'all'),
 #   path('prjectDetail/',views.detail, name = 'project-detail'),
 #   path('project-create/',views.upload,name='upload')
-# ]
+ ]
