@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from posix import environ
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-uw9@srr!e9l+d#-nriy=3lh&^27!x$sb$^%z2y*52f$h)8vgz#'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -37,6 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'projects.apps.ProjectsConfig',
+    'accounts.apps.AccountsConfig'
+
 ]
 
 MIDDLEWARE = [
@@ -75,8 +84,11 @@ WSGI_APPLICATION = 'praAwadds.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'awardds',
+        'USERNAME': os.environ.get('USERNAME'),
+        'PASSWORD': os.environ.get('PASSWORD')
+
     }
 }
 
@@ -112,6 +124,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+cloudinary.config(
+    cloud_name = 'die2khepc',
+    api_key = os.environ.get('API_KEY'),
+    api_secret = os.environ.get('API_SECRET')
+)
 
 
 # Static files (CSS, JavaScript, Images)
