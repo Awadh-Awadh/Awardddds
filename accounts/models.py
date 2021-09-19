@@ -6,8 +6,8 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class CustomUSer(AbstractUser):
-    pass
-
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
     def __str__(self) -> str:
         return self.username
 
