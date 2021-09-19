@@ -49,6 +49,13 @@ INSTALLED_APPS = [
     'rest_framework'
 
 ]
+'''
+To tell Django to use our new custom user model in place of the built-in User model
+AUTH_USER_MODEL = app.newModel
+'''
+
+AUTH_USER_MODEL = 'accounts.CustomUSer'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
