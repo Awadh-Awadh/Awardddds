@@ -1,5 +1,5 @@
 {% extends 'projects/base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
   <div class="reg-form">
@@ -9,7 +9,7 @@
         <legend>Register
         </legend>
         <div class="form">
-          {{form.as_p}}
+          {{form|crispy}}
         </div>
           
         <input type="submit" value="Sign up" class="btn btn-primary btn-block mt-2">

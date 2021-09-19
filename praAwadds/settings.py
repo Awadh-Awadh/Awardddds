@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
-    'rest_framework'
+    'rest_framework',
+    'crispy_forms'
 
 ]
 '''
@@ -155,3 +156,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL= 'home'

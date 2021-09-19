@@ -1,0 +1,8 @@
+.top-content,.socials{
+  display: flex;
+  justify-content: space-between;
+  
+}
+.top-content{
+  padding: 1.5rem 0;
+}
