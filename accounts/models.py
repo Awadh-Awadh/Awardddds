@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from cloudinary.models import CloudinaryField
+from django.conf import settings
 
 
 
@@ -16,3 +17,4 @@ class Profile(models.Model):
     profilepic = CloudinaryField('image')
     bio = models.TextField()
     contact= models.CharField(max_length=10)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
