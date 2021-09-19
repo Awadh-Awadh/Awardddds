@@ -1,8 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
-from django.db.models.aggregates import Max
-from django.db.models.fields.related import ManyToManyField
 from accounts.models import Profile
+from django.conf import settings
 
 # Create your models here.
 
@@ -27,12 +26,21 @@ class Project(models.Model):
         return self.title
 
 class Review(models.Model):
-  design = models.CharField(max_length=2)
-  userbility = models.CharField(max_length=2)
-  content = models.CharField(max_length=2)
-  creativity = models.CharField(max_length=2)
-  project = ManyToManyField(Project)
+ project = models.ForeignKey(Project, on_delete = models.CASCADE)
+ review = models.TextField()
+ reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+ date_reviewed = models.DateTimeField(auto_now_add=True)
+ def __str__(self):
+    return self.reviewer.username
 
-  def __str__(self):
-    return self.design
+class Rating(models.Model):
+    design = models.IntegerField()
+    userbility = models.IntegerField()
+    creativity = models.IntegerField
+    content = models.IntegerField()
+    score = models.IntegerField(default = 0)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    rated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
 
+    def __str__(self):
+        return 
