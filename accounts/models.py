@@ -3,6 +3,7 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 
 
+
 # Create your models here.
 class CustomUSer(AbstractUser):
     pass
@@ -11,9 +12,7 @@ class CustomUSer(AbstractUser):
         return self.username
 
 
-
-
-
-
 class Profile(models.Model):
     profilepic = CloudinaryField('image')
+    bio = models.TextField()
+    contact= models.CharField(max_length=10)
