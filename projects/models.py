@@ -9,9 +9,10 @@ class Project(models.Model):
 
     title = models.CharField(max_length=200)
     image = CloudinaryField('image')
-    description = models.TextField
+    description = models.TextField()
     publisher = models.ForeignKey(Profile, on_delete = models.CASCADE)
-    url = models.URLField()
+    url = models.URLField(blank=True)
+    location = models.CharField(max_length=200)
     date_posted = models.DateTimeField(auto_now_add=True)
 
 

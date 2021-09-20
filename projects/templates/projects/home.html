@@ -4,18 +4,20 @@
 <div class="container">
   <div class="top-content">
     <div class="side">
-      <a href=""><h4>ENGLISH</h4></a>
+      <a href="">
+        <h4>ENGLISH</h4>
+      </a>
     </div>
     <div class="top-main">
       <h5>
         The awards of design, creativity and innovation on the internet
-   
+
       </h5>
     </div>
     <div class="left-side">
       <div class="socials">
         <div class="insta">
-          <i class="fab fa-instagram"></i>  |
+          <i class="fab fa-instagram"></i> |
         </div>
         <div class="fb">
           <i class="fab fa-facebook-f"></i> |
@@ -25,22 +27,90 @@
         </div>
       </div>
     </div>
-  
+
   </div>
 </div>
 
 {% include 'projects/nav.html' %}
 <div class="hero">
   <div class="hero-content">
-    <h1 class = "text-center">PROJECT & PROJECT REVIEW</h1>  
-    <h2  class = "text-center"> BY AWADH SAID FROM KENYA  </h2>
-</div>
-<div class="review">
-  <div class="box1"></div>
-  <div class="box2"></div>
-  <div class="box3"></div>
-  <div class="box4"></div>
-</div>
+    <h1 class="text-center">PROJECT & PROJECT REVIEW</h1>
+    <h2 class="text-center"> BY AWADH SAID FROM KENYA </h2>
+  </div>
+  <div class="review">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+  </div>
 
 </div>
+<section id="projects">
+  <div class="container">
+    <div class="project-title">
+      <h1>Have a glimpse of awesome projects</h1>
+    </div>
+    <section>
+      <div class="container-fluid">
+        <div class="images">
+          {% for project in projects %}
+
+          <div class="card" style="width: 400px;">
+            <div class="eachImage">
+              <div class="content-overlay"></div>
+
+              <!-- when an image is clicked, gets to the url to details/clicked image id. this is the id that is passed as an 
+              arg to the details function-->
+
+              <a href="{% url 'projectDetail' pk=project.pk %}"><img class="content-image" src="{{project.image.url}}"
+                  alt="{{project.title}}">
+                <div class="content-details fadeIn-bottom">
+                  <h3 class="content-title">{{project.title}}</h3>
+                  <a href="facebook.com"><i class=" icon fas fa-cloud-download-alt"></i></a>
+                  <p><i class=" love fas fa-heart"></i></p>
+                </div>
+
+              </a>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{project.description}}.</p>
+              <div class="extra">
+                <div class="location">
+                  <small>
+                    {{project.location}}
+                  </small>
+
+                </div>
+                <div class="publish">
+                  <p>
+                    {{project.date_posted}}
+                  </p>
+                </div>
+              </div>
+              <div class="profile">
+                <div class="profile-project-image">
+                  <img src="" alt="">
+                </div>
+                <span>
+                  <p>BY {{project.profile.name}}</p>
+                </span>
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+
+
+
+          {% endfor %}
+
+
+
+        </div>
+      </div>
+  </div>
+</section>
 {% endblock %}

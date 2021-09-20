@@ -50,7 +50,7 @@ def project_detail(request,pk):
 
 
 @api_view(['GET', 'POST'])
-def list_all(request):
+def profiles(request):
     '''
     list all profiles or create new
     '''
@@ -67,7 +67,7 @@ def list_all(request):
 
 
 @api_view(['GET','PUT','DELETE'])
-def project_detail(request,pk):
+def profile_detail(request,pk):
     '''
     retrieve, update and delete
     '''
