@@ -24,3 +24,27 @@ def list_all(request):
            serializer.save()
            return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+
+
+def project_detail(request,pk):
+    '''
+    retrieve, update and delete
+    '''
+    try:
+        project = ApiProject.objects.get(id=pk)
+    except ApiProject.DoesNotExist:
+        return Response(status = status.HTTP_400_BAD_REQUEST)
+    if request.method =='GET': 
+        serializer = ProjectSerializer(project)
+        return Response(serializer.data)
+    if request.method == 'PUT':
+        serializer = ProjectSerializer(project,data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+    if request.method == 'DELETE':
+        project.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
