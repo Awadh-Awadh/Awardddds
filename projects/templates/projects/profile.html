@@ -1,0 +1,70 @@
+{% extends 'projects/base.html' %}
+
+
+{% block content %}
+{% include 'projects/profile.html' %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="profile-image">
+        <img class="profile-pic" src=" {{user.profile.pp.url}}" alt="{{user.user}}">
+      </div>
+
+    </div>
+    <div class="col-md-8">
+      <div class="profile-info">
+        <div class="name">
+          <h3>
+            {{user.username}}
+          </h3>
+        </div>
+        <div class="follow">
+          <div class="edit-profile">
+            <a href="{% url 'edit' %}">
+              <button class=" btn btn-lg btn-outline-dark">Edit Profile</button>
+            </a>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="following">
+        <div class="num-post">
+          <h2>{{posts}} Posts</h2>
+        </div>
+
+        <div class="follower">
+          <div class="num">
+            <h2>0</h2>
+          </div>
+          <h2>following</h2>
+        </div>
+        <div class="followers">
+          <div class="num">
+            <h2>0</h2>
+          </div>
+          <h2> followers </h2>
+        </div>
+
+      </div>
+      <div class="bio">
+        <p>
+          {{user.profile.bio}}
+        </p>
+      </div>
+        <div class="user-posts">
+          <h2 class = "text-center">Posts</h2>
+          {% for post in images %}
+              <div class="image-cont">
+              <img src="{{post.image.url}}" class = "user-images" alt="{{post.name}}" class="profile-post-images">
+            </div>
+           
+          
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+©

@@ -15,7 +15,7 @@ def home(request):
 @login_required
 def projectDetail(request,pk):
     project = Project.objects.get(id = pk)
-    reviews = Review.objects.all()
+    reviews = Review.objects.filter(project = project).all()
     context = {
       'project': project,
       'reviews':reviews
