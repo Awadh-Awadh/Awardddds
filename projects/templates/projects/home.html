@@ -54,26 +54,36 @@
       <div class="container-fluid">
         <div class="images">
           {% for project in projects %}
-
-          <div class="card" style="width: 400px;">
             <div class="eachImage">
               <div class="content-overlay"></div>
-
               <!-- when an image is clicked, gets to the url to details/clicked image id. this is the id that is passed as an 
               arg to the details function-->
-
-              <a href="{% url 'projectDetail' pk=project.pk %}"><img class="content-image" src="{{project.image.url}}"
-                  alt="{{project.title}}">
-                <div class="content-details fadeIn-bottom">
+              <a href=""><img class="content-image" src="{{project.image.url}}" alt="{{project.title}}"></a>         
+                                      
+                  <div class="content-details fadeIn-bottom">
+                    <div class="wrapper">
+                      <!-- <div class="socials">
+                        <a href="awadh.com" ><i class="fab fa-facebook-f"></i></a>
+                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+  
+                      </div> -->
+                     <div class="site">
+                       <a href="{% url 'projectDetail' pk=project.pk %}"><i class="fas fa-share share"></i></a>
+                      </div>
+                    </div>
+                    
+                    
                   <h3 class="content-title">{{project.title}}</h3>
-                  <a href="facebook.com"><i class=" icon fas fa-cloud-download-alt"></i></a>
-                  <p><i class=" love fas fa-heart"></i></p>
+                
                 </div>
+                
+             
 
-              </a>
+             
             </div>
-            <div class="card-body">
-              <p class="card-text">{{project.description}}.</p>
+            <div class="project-body">
+              <p class="text">{{project.description}}.</p>
               <div class="extra">
                 <div class="location">
                   <small>
@@ -89,14 +99,12 @@
               </div>
               <div class="profile">
                 <div class="profile-project-image">
-                  <img src="" alt="">
+                  <img class = 'project-profile-image'src="{{project.publisher.profilepic.url}}" alt="">
                 </div>
                 <span>
-                  <p>BY {{project.profile.name}}</p>
+                  <p>BY {{project.publisher.user.username}}</p>
                 </span>
               </div>
-
-
 
             </div>
           </div>

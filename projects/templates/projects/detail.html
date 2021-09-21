@@ -1,5 +1,40 @@
 {%  extends 'projects/base.html' %}
 
+
+
 {% block content %}
-  <h1>Awadh</h1>
-  {% endblock %}
+
+
+<div class="container">
+  <div class="contain">
+    <div class="details-content">
+      <div>
+        <img class = 'imagedetails' src="{{project.image.url}}" alt="">
+      </div>
+      <div class="dets">
+        <h4>Project Name : {{project.title}}</h4>
+        <p class="text-muted"><i class="far fa-clock"></i> 
+         Date posted {{project.date_posted}}
+        </p>
+        <p class="text-muted">
+          Owner : {{project.publisher.user.username}}
+        </p>
+       <div class="review">
+         {% for review in reviews %}
+          <h4>Reviews</h4>
+          <div>
+            <p>{{review.review}}</p>
+          </div>
+         {% endfor %}
+       </div>
+      </div>
+      <div class="btn">
+       <a href="https://{{ project.url}}" target="_blank"> <div class="btn btn-lg btn-outline-success">View</div></a>
+      </div>
+    </div>
+   
+  </div>
+ 
+</div>
+
+ {% endblock %}

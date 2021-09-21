@@ -33,6 +33,13 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" name = 'q' type="submit">Search</button>
           </form>
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% endif %}
+          </ul>
         </div>
       </div>
     </div>

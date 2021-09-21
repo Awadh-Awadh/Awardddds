@@ -33,7 +33,7 @@
   transition: all 0.4s ease-in-out 0s;
 }
 .eachImage:hover .content-overlay{
-  opacity: 0.6;
+  opacity: 1;
 }
 .content-details {
   position: absolute;
@@ -108,4 +108,25 @@ a{
   width: 400px;
   opacity: .5 !important;
   /* transform: rotate(360deg); */
+}
+
+
+.project-profile-image{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.site{
+  position: relative;
+  left: 9rem;
+  top: 7rem;
+ 
+}
+.share{
+  font-size: 1.5rem;
+  color:white;
+  width: 35px;
+  height: 35px;
+  border: 1px solid white;
+  border-radius: 50%;
 }
