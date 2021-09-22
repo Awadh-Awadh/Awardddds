@@ -57,5 +57,9 @@ def upload(request):
 
 def account(request):
     loggedin_user=request.user
-    profile = Profile.objects.filter(user=loggedin_user)
+    profile = Profile.objects.get(user=loggedin_user)
+    context = {
+      'profile':profile
+    }
+    return render(request, 'projects/account.html',context)
 
