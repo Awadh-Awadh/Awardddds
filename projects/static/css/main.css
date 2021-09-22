@@ -373,3 +373,11 @@ a{
   padding: 0 20px;
   margin-bottom: 17px;
 }
+.back{
+  margin: 2rem 0;
+}
+
+.box{
+  display: flex;
+  justify-content: space-around;
+}

@@ -52,69 +52,75 @@
     </div>
     <section>
       <div class="container-fluid">
-        <div class="images">
+        <div class="box">
           {% for project in projects %}
-            <div class="eachImage">
-              <div class="content-overlay"></div>
-              <!-- when an image is clicked, gets to the url to details/clicked image id. this is the id that is passed as an 
-              arg to the details function-->
-              <a href=""><img class="content-image" src="{{project.image.url}}" alt="{{project.title}}"></a>         
-                                      
-                  <div class="content-details fadeIn-bottom">
-                    <div class="wrapper">
-                      <!-- <div class="socials">
-                        <a href="awadh.com" ><i class="fab fa-facebook-f"></i></a>
-                        <a href=""><i class="fab fa-twitter"></i></a>
-                        <a href=""><i class="fab fa-linkedin-in"></i></a>
-  
-                      </div> -->
-                     <div class="site">
-                       <a href="{% url 'projectDetail' pk=project.pk %}"><i class="fas fa-share share"></i></a>
+          <div class="images">
+            
+              <div class="eachImage">
+                <div class="content-overlay"></div>
+                <!-- when an image is clicked, gets to the url to details/clicked image id. this is the id that is passed as an 
+                arg to the details function-->
+                <a href=""><img class="content-image" src="{{project.image.url}}" alt="{{project.title}}"></a>         
+                                        
+                    <div class="content-details fadeIn-bottom">
+                      <div class="wrapper">
+                        <!-- <div class="socials">
+                          <a href="awadh.com" ><i class="fab fa-facebook-f"></i></a>
+                          <a href=""><i class="fab fa-twitter"></i></a>
+                          <a href=""><i class="fab fa-linkedin-in"></i></a>
+    
+                        </div> -->
+                       <div class="site">
+                         <a href="{% url 'projectDetail' pk=project.pk %}"><i class="fas fa-share share"></i></a>
+                        </div>
                       </div>
-                    </div>
-                    
-                    
-                  <h3 class="content-title">{{project.title}}</h3>
-                
-                </div>
-                
-             
-
-             
-            </div>
-            <div class="project-body">
-              <p class="text">{{project.description}}.</p>
-              <div class="extra">
-                <div class="location">
-                  <small>
-                    {{project.location}}
-                  </small>
-
-                </div>
-                <div class="publish">
-                  <p>
-                    {{project.date_posted}}
-                  </p>
-                </div>
+                      
+                      
+                    <h3 class="content-title">{{project.title}}</h3>
+                  
+                  </div>
+                  
+               
+  
+               
               </div>
-              <div class="profile">
-                <div class="profile-project-image">
-                  <img class = 'project-profile-image'src="{{project.publisher.profilepic.url}}" alt="">
+              <div class="project-body">
+                <p class="text">{{project.description}}.</p>
+                <div class="extra">
+                  <div class="location">
+                    <small>
+                      {{project.location}}
+                    </small>
+  
+                  </div>
+                  <div class="publish">
+                    <p>
+                      {{project.date_posted}}
+                    </p>
+                  </div>
                 </div>
-                <span>
-                  <p>BY {{project.publisher.user.username}}</p>
-                </span>
+                <div class="profile">
+                  <div class="profile-project-image">
+                    <img class = 'project-profile-image'src="{{project.publisher.profilepic.url}}" alt="">
+                  </div>
+                  <span>
+                    <p>BY {{project.publisher.user.username}}</p>
+                  </span>
+                </div>
+  
               </div>
-
+              
             </div>
-          </div>
+            {% endfor %}
+
+        </div>
+     
 
 
 
 
 
-          {% endfor %}
-
+          
 
 
         </div>

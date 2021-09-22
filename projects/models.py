@@ -39,13 +39,16 @@ class Review(models.Model):
     return self.reviewer.username
 
 class Rating(models.Model):
-    design = models.IntegerField()
-    userbility = models.IntegerField()
-    creativity = models.IntegerField
-    content = models.IntegerField()
-    score = models.IntegerField(default = 0)
+    design = models.IntegerField(default = 0)
+    userbility = models.IntegerField(default = 0)
+    creativity = models.IntegerField(default = 0)
+    content = models.IntegerField(default = 0)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     rated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
-
+   
+    
+    # @classmethod
+    # def save_score(cls,val):
+    #     cls.save(val)
     def __str__(self):
         return 

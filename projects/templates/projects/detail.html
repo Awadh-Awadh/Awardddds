@@ -6,94 +6,155 @@
 
 
 <div class="container">
+  <div class="back">
+<a href="{% url 'home' %}">
+  <button type="button" class="btn btn-lg btn-outline-primary back">
+  Back
+</button></a>
+  </div>
+  
   <div class="row">
     <div class="col-md-6">
       <div class="contain">
         <div class="details-content">
           <div>
-            <img class = 'imagedetails' src="{{project.image.url}}" alt="">
+            <img class='imagedetails' src="{{project.image.url}}" alt="">
           </div>
           <div class="dets">
             <h4>Project Name : {{project.title}}</h4>
-            <p class="text-muted"><i class="far fa-clock"></i> 
-             Date posted {{project.date_posted}}
+            <p class="text-muted"><i class="far fa-clock"></i>
+              Date posted {{project.date_posted}}
             </p>
             <p class="text-muted">
               Owner : {{project.publisher.user.username}}
             </p>
-            <p>Score:</p>
+            <p>Score: {{score}}</p>
+            <div>
+              <small>Rated by: {{ratings.}}</small>
+            </div>
+            
             <div class="btn">
-              <a href="{{ project.url}}" target="_blank"> <div class="btn btn-lg btn-outline-primary">View</div></a>
+              <a href="{{ project.url}}" target="_blank">
+                <div class="btn btn-lg btn-outline-primary">View</div>
+              </a>
+              <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal" data-bs-target="#review">
+                Add Rating
+              </button>
+      
+              <!-- Modal -->
+              <div class="modal fade" id="review" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add Your Ratings</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class='form-group'>
+                          <legend class="border-bottom mb-4">
+                            Add Your ratings
+                          </legend>
+                          {{rat_form|crispy}}
+                          <br>
+                          <br>
+                          <hr>
+      
+                          <div class='form-group'>
+                            <button class="btn btn-outline-primary" type=submit>
+                              Save
+                            </button>
+                          </div>
+      
+                        </fieldset>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+
         </div>
-       
+
       </div>
-     
-    </div>
     </div>
     <div class="col-md-4">
       <div class="review">
+        {% if reviews %}
         {% for review in reviews %}
-         <h3>Reviews</h3>
-         <div>
-           <p>{{review.review}}</p>
-         </div>
-         <small>
-           Reviewed by:
-           {{review.reviewer.username}}
-         </small>
-         <hr>
+        <h3>Reviews</h3>
+        <div>
+          <p>{{review.review}}</p>
+        </div>
+        <small>
+          Reviewed by:
+          {{review.reviewer.username}}
+        </small>
+        <hr>
         {% endfor %}
+      {% else %}
+      <div class="no">
+        <h4>
+          No Reviews at the moment
+        </h4>
       </div>
+      {% endif %}
       </div>
-      <div class="col-md-2">
-        <div class="icon review">
-          <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Add Review
-</button>
+    </div>
+    <div class="col-md-2">
+      <div class="icon review">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rating">
+          Add Review
+        </button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Your Review</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <fieldset class = 'form-group'>
-            <legend class = "border-bottom mb-4">
-              Upload
-            </legend>
-            {{form|crispy}}
-             <br>
-             <br>
-             <hr>
-      
-            <div class = 'form-group'>
-              <button class="btn btn-outline-info" type = submit>
-                Upload
-              </button>
+        <!-- Modal -->
+        <div class="modal fade" id="rating" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Your Review</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <fieldset class='form-group'>
+                    <legend class="border-bottom mb-4">
+                      Add Review
+                    </legend>
+                    {{rev_form|crispy}}
+                    <br>
+                    <br>
+                    <hr>
+
+                    <div class='form-group'>
+                      <button class="btn btn-outline-info" type=submit>
+                        Save
+                      </button>
+                    </div>
+
+                  </fieldset>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
             </div>
-      
-          </fieldset>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
 
 
- {% endblock %}
+
+{% endblock %}
