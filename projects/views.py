@@ -2,7 +2,7 @@ from django.contrib.auth import login
 from django.shortcuts import render,redirect
 from .models import Project, Review, Rating,Profile
 from django.contrib.auth.decorators import login_required
-from .forms import UploadForm
+from .forms import UploadForm,ReviewForm
 
 # Create your views here.
 def home(request):
@@ -16,9 +16,20 @@ def home(request):
 def projectDetail(request,pk):
     project = Project.objects.get(id = pk)
     reviews = Review.objects.filter(project = project).all()
+    
+    if request.method =='POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit = False)
+            obj.project= project
+            obj.reviewer = request.user
+            form.save()
+    else:
+        form = ReviewForm()
     context = {
-      'project': project,
-      'reviews':reviews
+        'project': project,
+        'reviews':reviews,
+        'form':form
           }
     return render(request, 'projects/detail.html', context)
 

@@ -1,7 +1,7 @@
 {%  extends 'projects/base.html' %}
 
 
-
+{% load crispy_forms_tags %}
 {% block content %}
 
 
@@ -23,7 +23,7 @@
             </p>
             <p>Score:</p>
             <div class="btn">
-              <a href="{{ project.url}}" target="_blank"> <div class="btn btn-lg btn-outline-success">View</div></a>
+              <a href="{{ project.url}}" target="_blank"> <div class="btn btn-lg btn-outline-primary">View</div></a>
               </div>
         </div>
        
@@ -62,7 +62,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class = 'form-group'>
+            <legend class = "border-bottom mb-4">
+              Upload
+            </legend>
+            {{form|crispy}}
+             <br>
+             <br>
+             <hr>
+      
+            <div class = 'form-group'>
+              <button class="btn btn-outline-info" type = submit>
+                Upload
+              </button>
+            </div>
+      
+          </fieldset>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
