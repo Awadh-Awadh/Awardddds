@@ -381,3 +381,12 @@ a{
   display: flex;
   justify-content: space-around;
 }
+
+.hero{
+  padding: 25% 5%;
+  background-image: url("/static/images/hero.jpg");
+  background-size: cover;
+}
+.hero-content h1,h2{
+  color: #fff;
+}
