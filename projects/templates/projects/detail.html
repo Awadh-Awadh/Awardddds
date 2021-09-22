@@ -6,35 +6,76 @@
 
 
 <div class="container">
-  <div class="contain">
-    <div class="details-content">
-      <div>
-        <img class = 'imagedetails' src="{{project.image.url}}" alt="">
-      </div>
-      <div class="dets">
-        <h4>Project Name : {{project.title}}</h4>
-        <p class="text-muted"><i class="far fa-clock"></i> 
-         Date posted {{project.date_posted}}
-        </p>
-        <p class="text-muted">
-          Owner : {{project.publisher.user.username}}
-        </p>
-       <div class="review">
-         {% for review in reviews %}
-          <h4>Reviews</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="contain">
+        <div class="details-content">
           <div>
-            <p>{{review.review}}</p>
+            <img class = 'imagedetails' src="{{project.image.url}}" alt="">
           </div>
-         {% endfor %}
-       </div>
+          <div class="dets">
+            <h4>Project Name : {{project.title}}</h4>
+            <p class="text-muted"><i class="far fa-clock"></i> 
+             Date posted {{project.date_posted}}
+            </p>
+            <p class="text-muted">
+              Owner : {{project.publisher.user.username}}
+            </p>
+            <p>Score:</p>
+            <div class="btn">
+              <a href="{{ project.url}}" target="_blank"> <div class="btn btn-lg btn-outline-success">View</div></a>
+              </div>
+        </div>
+       
       </div>
-      <div class="btn">
-       <a href="https:{{ project.url}}" target="_blank"> <div class="btn btn-lg btn-outline-success">View</div></a>
+     
+    </div>
+    </div>
+    <div class="col-md-4">
+      <div class="review">
+        {% for review in reviews %}
+         <h3>Reviews</h3>
+         <div>
+           <p>{{review.review}}</p>
+         </div>
+         <small>
+           Reviewed by:
+           {{review.reviewer.username}}
+         </small>
+         <hr>
+        {% endfor %}
+      </div>
+      </div>
+      <div class="col-md-2">
+        <div class="icon review">
+          <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Review
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Your Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
-   
+  </div>
+</div>
+        </div>
+      </div>
+    </div>
   </div>
  
-</div>
+
 
  {% endblock %}

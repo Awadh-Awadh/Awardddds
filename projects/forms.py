@@ -7,3 +7,9 @@ class UploadForm(forms.ModelForm):
         model = Project
         fields = ('__all__')
         exclude = ['publisher']
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+       model = Review
+       fields = '__all__'
+       exclude = ('project','reviewer')

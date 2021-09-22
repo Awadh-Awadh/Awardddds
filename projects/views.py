@@ -42,3 +42,9 @@ def upload(request):
 
 
   return render(request, 'projects/upload.html', context)
+
+
+def account(request):
+    loggedin_user=request.user
+    profile = Profile.objects.filter(user=loggedin_user)
+
