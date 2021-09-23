@@ -18,3 +18,11 @@ class Profile(models.Model):
     bio = models.TextField()
     contact= models.CharField(max_length=10)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+
+    def save_profile(self):
+        self.save()
+    def delete_profile(self):
+        self.save()
+
+    def __str__(self):
+        self.contact

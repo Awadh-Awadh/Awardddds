@@ -13,8 +13,13 @@ class TestAppClass(TestCase):
        self.project =Project(id=6,title = 'Insta',image = 'insta.jpg', description = 'Nice to show', publisher = self.profile,location = 'kisumu', date_posted = 12-5-2021)
        self.review = Review(id=3, project = self.project, review = 'nice' , reviewer = self.user,  date_reviewed = 10-10-2020 )
        self.rating = Rating(id = 3, design =4, userbility = 4, creativity = 6, content = 5, project = self.project, rated_by = self.user  )
-    # def tearDown(self):
-    #     CustomUSer.objects.all().delete()
+    
+    def tearDown(self):
+        CustomUSer.objects.all().delete()
+        Profile.objects.all().delete()
+        Project.objects.all().delete()
+        Review.objects.all().delete()
+        Rating.objects.all().delete()
 
 
       #instances
@@ -28,8 +33,26 @@ class TestAppClass(TestCase):
          self.assertTrue(isinstance(self.rating,Rating))
     def test_profile(self):
         self.assertTrue(isinstance(self.profile,Profile))
+    
+    
     #test methods
 
 
     def tets_save_project(self):
-        self.profile.save
+        self.profile.save()
+        profiles = Profile.objects.all()
+        self.assertTrue(len(profiles)>0)
+
+    def test_save_review(self):
+        self.review.save()
+        reviews = Review.objects.all()
+        self.assertTrue(len(reviews)>0)
+    
+    def test_save_rating(self):
+        self.rating.save()
+        ratings = Rating.objects.all() 
+        self.assertTrue(len(ratings)>0)
+    def test_save_project(self):
+        self.project.save()
+        projects = Project.objects.all()
+        self.assertTrue(len(projects)>0)

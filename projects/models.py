@@ -61,8 +61,15 @@ class Rating(models.Model):
     rated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
    
     
-    # @classmethod
-    # def save_score(cls,val):
-    #     cls.save(val)
+    def save_rating(self):
+        self.save()
+
+    def delete_rating(self):
+        return self.delete()
+        
+    @classmethod
+    def all_rating(cls):
+        cls.objects.all()
+
     def __str__(self):
         return 
