@@ -1,9 +1,6 @@
 from django.shortcuts import render
 from .serializers import ProfileSerializer, ProjectSerializer
 from .models import ApiProject, ApiProfile
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from rest_framework import status
 
 
 # Create your views here.
