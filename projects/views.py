@@ -20,51 +20,55 @@ def home(request):
     return render(request,'projects/home.html',context)
 @login_required
 def projectDetail(request,pk):
-    project = Project.objects.get(id = pk)
-    reviews = Review.objects.filter(project = project).all()
-    rating = Rating.objects.filter(project = project )
-
-
-
-    '''
-    If you are using values_list() with a single field, you can use 
-    flat=True to return a QuerySet of single values instead of 1-tuples:
-    
-    '''
-    # design = Rating.objects.filter(project = project).aggregate(Avg('design'))
-    # userbility = Rating.objects.filter(project = project).aggregate(Avg('userbility'))
-    # creativity = Rating.objects.filter(project = project).aggregate(Avg('creativity'))
-    # content = Rating.objects.filter(project = project).aggregate(Avg('content'))
-    # av_total = float(int(design['design__avg']) + int(userbility['userbility__avg']) + int(creativity['creativity__avg']) + int(content['content__avg']))
-    # score = round(av_total/4, 2)
-    
-   
+    project = Project.objects.get(pk = pk)    
+    reviews = Review.objects.filter(project = project).all()  
+    ratings = Rating.objects.filter(project=project) 
+    design = 0
+    score = 0
+    userbility = 0
+    creativity = 0
+    content = 0
     if request.method =='POST':
        
         rev_form = ReviewForm(request.POST)
         rat_form = RatingForm(request.POST)
-        
-        if rev_form.is_valid() and rat_form.is_valid():
+        if rev_form.is_valid():
             obj = rev_form.save(commit = False)
-            rating = rat_form.save(commit = False)
             obj.project= project
-            rating.project = project
             obj.reviewer = request.user
-            rating.rated_by = request.user
             rev_form.save()
-            rat_form.save()            
-            return redirect('projectDetail')
+        if rat_form.is_valid():
+            rating = rat_form.save(commit = False)            
+            rating.project = project            
+            rating.rated_by = request.user           
+            rat_form.save()  
+            design = rat_form.cleaned_data['design'] 
+            userbility = rat_form.cleaned_data['userbility']
+            creativity = rat_form.cleaned_data['creativity']
+            content = rat_form.cleaned_data['content']
+            total = design + userbility + creativity +content
+            score = total// 4
+
+            
+
+            print(design)        
+            
     else:
         
         rev_form = ReviewForm()
         rat_form = RatingForm()
 
-    
+  
     context = {
         'project': project,
         'reviews':reviews,
         'rev_form':rev_form,
         'rat_form':rat_form,
+        'score':score,
+        'design':design,
+        'userbility':userbility,
+        'creativity':creativity,
+        'content': content
         
           }
     
@@ -81,7 +85,7 @@ def upload(request):
       obj = form.save(commit = False)
       obj.publisher = publisher
       form.save()
-      print(request.user)
+      # print(request.user)
       return redirect('home')
   else:
       form = UploadForm()
@@ -105,7 +109,7 @@ def account(request):
             # obj = form.save(commit = False)
             # obj.user = user
             form.save()
-            return redirect(account)
+            return redirect('projects')
     else:
         form = EditProfile()
 
@@ -125,8 +129,6 @@ def projects(request):
 
 
     #API
-
-
 @api_view(['GET', 'POST'])
 def list_all(request):
     '''
@@ -134,6 +136,7 @@ def list_all(request):
     '''
     if request.method == 'GET':
         projects = Project.objects.all()
+        print(projects)
         serializer = ProjectSerializer(projects, many = True)
         return Response(serializer.data)
     elif request.method == 'POST':

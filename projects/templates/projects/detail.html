@@ -28,10 +28,12 @@
             <p class="text-muted">
               Owner : {{project.publisher.user.username}}
             </p>
+            <small>design : {{design}}</small>
+            <small>Userbility: {{userbility}}</small>
+            <small>Creativity : {{cretivity}}</small>
+            <small>Content {{content}}</small>
             <p>Score: {{score}}</p>
-            <div>
-              <small>Rated by: {{ratings.}}</small>
-            </div>
+            
             
             <div class="btn">
               <a href="{{ project.url}}" target="_blank">
@@ -87,8 +89,9 @@
     <div class="col-md-4">
       <div class="review">
         {% if reviews %}
-        {% for review in reviews %}
         <h3>Reviews</h3>
+        {% for review in reviews %}
+       
         <div>
           <p>{{review.review}}</p>
         </div>
@@ -123,7 +126,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data">
+                <form method="post" action = "">
                   {% csrf_token %}
                   <fieldset class='form-group'>
                     <legend class="border-bottom mb-4">
@@ -145,7 +148,6 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
