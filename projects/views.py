@@ -138,6 +138,10 @@ def list_all(request):
         projects = Project.objects.all()
         print(projects)
         serializer = ProjectSerializer(projects, many = True)
+        print(serializer.data)
+        print(serializer)
+        ans = Response(serializer.data)
+        print(ans)
         return Response(serializer.data)
     elif request.method == 'POST':
         serializer = ProjectSerializer(data = request.data)

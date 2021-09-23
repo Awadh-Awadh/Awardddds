@@ -18,14 +18,17 @@ class Project(models.Model):
         ordering = ['-date_posted']
 
 
-
-
-
     def save_project(self):
-        return self.save()
+        self.save()
+
+   
 
     def delete_project(self):
         return self.delete()
+
+    @classmethod
+    def all_projects(cls):
+        cls.objects.all()
 
     def __str__(self):
         return self.title
@@ -35,6 +38,17 @@ class Review(models.Model):
  review = models.TextField()
  reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
  date_reviewed = models.DateTimeField(auto_now_add=True)
+
+ def save_review(self):
+    self.save()
+
+ def delete_review(self):
+    return self.delete()
+        
+ @classmethod
+ def all_review(cls):
+    cls.objects.all()
+
  def __str__(self):
     return self.reviewer.username
 
