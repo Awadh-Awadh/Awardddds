@@ -87,7 +87,7 @@ def upload(request):
 
   return render(request, 'projects/upload.html', context)
 
-
+@login_required
 def account(request):
     loggedin_user=request.user
     profile = Profile.objects.get(user=loggedin_user)
@@ -109,4 +109,9 @@ def account(request):
       'form':form
     }
     return render(request, 'projects/account.html',context)
-
+@login_required
+def list_all(request):
+    projects = Project.objects.all()
+    context = {
+      'projects':projects}
+    return render(request, 'projects/home.html',context)
