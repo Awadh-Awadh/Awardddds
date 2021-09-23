@@ -1,13 +1,13 @@
 from rest_framework import serializers
-from .models import ApiProfile, ApiProject
+from .models import Profile, Project
 
 
 class ProjectSerializer(serializers.Serializer):
      class Meta:
-        model = ApiProject
+        model = Project
         fields = '__all__'
 
 class ProfileSerializer(serializers.Serializer):
      class Meta:
-        model = ApiProfile
+        model = Profile
         fields = '__all__'
