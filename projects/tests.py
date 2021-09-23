@@ -35,7 +35,7 @@ class TestAppClass(TestCase):
         self.assertTrue(isinstance(self.profile,Profile))
     
     
-    #test methods
+    #test save methods
 
 
     def tets_save_project(self):
@@ -56,3 +56,24 @@ class TestAppClass(TestCase):
         self.project.save()
         projects = Project.objects.all()
         self.assertTrue(len(projects)>0)
+
+        #Delete Methods
+    def test_delete_project(self):
+        self.project.delete_project()
+        projects = Project.objects.all()
+        self.assertAlmostEqual(len(projects), 0)
+
+    def test_delete_profile(self):
+        self.profile.delete_profile()
+        profiles = Profile.objects.all()
+        self.assertAlmostEqual(len(profiles), 0)
+
+    def test_delete_review(self):
+        self.review.delete_review()
+        reviews = Review.objects.all()
+        self.assertAlmostEqual(len(reviews), 0)
+
+    def test_delete_rating(self):
+        self.rating.delete_rating()
+        rating = Rating.objects.all()
+        self.assertAlmostEqual(len(rating), 0)
