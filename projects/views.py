@@ -115,7 +115,7 @@ def account(request):
     }
     return render(request, 'projects/account.html',context)
 @login_required
-def list_all(request):
+def projects(request):
     projects = Project.objects.all()
     context = {
       'projects':projects}
