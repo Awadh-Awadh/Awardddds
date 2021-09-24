@@ -18,7 +18,7 @@ def home(request):
     }
 
     return render(request,'projects/home.html',context)
-@login_required
+@login_required(login_url='projects')
 def projectDetail(request,pk):
     project = Project.objects.get(pk = pk)    
     reviews = Review.objects.filter(project = project).all()  
@@ -118,7 +118,7 @@ def account(request):
       'form':form
     }
     return render(request, 'projects/account.html',context)
-@login_required
+@login_required(login_url='/account/login')
 def projects(request):
     projects = Project.objects.all()
     context = {
@@ -213,3 +213,14 @@ def profile_detail(request,pk):
     if request.method == 'DELETE':
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+  
+
+def api(request):
+    return render(request, 'projects/api.html')
+
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        searches = Project.objects.filter(title__icontains = query)
+        return render(request,'projects/search.html', {'searches':searches})

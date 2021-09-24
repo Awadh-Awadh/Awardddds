@@ -1,0 +1,24 @@
+{% extends 'projects/base.html' %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+  <div class="images">
+    {% for search in searches %}
+
+  <div class = "eachImage">
+    <div class="content-overlay"></div>
+    <img class = 'content-image' src="{{search.image.url}}" alt="">
+  
+  <div class="content-details fadeIn-bottom">
+    <h3 class="content-title">{{search.title}}</h3>
+    <p class="content-text">{{search.description}}</p>
+  </div>
+  </div>
+  {% endfor %}
+ </div>
+  </div class = 'button'>
+  <a href="{% url 'projects' %}"><button class="btn btn-lg btn-outline-success">Back</button>
+  </a>
+ {% endblock %}

@@ -7,7 +7,7 @@
   padding: 1.5rem 0;
 }
 .content-image{
-  height: 400px;
+  height: 300px;
   width: 400px;
 }
 .eachImage{
@@ -380,6 +380,7 @@ a{
 .box{
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 #hero{
@@ -519,4 +520,7 @@ a{
   float: left;
   margin: 4px 15px  0 5px;
   min-width: 15px;
+}
+.link{
+  margin: 1rem 2rem;
 }

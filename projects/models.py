@@ -70,6 +70,3 @@ class Rating(models.Model):
     @classmethod
     def all_rating(cls):
         cls.objects.all()
-
-    def __str__(self):
-        return 
