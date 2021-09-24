@@ -43,11 +43,12 @@
 
     <div class="col-lg-4">
       <div class="update-profile">
+        <h1> Edit Profile</h1>
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <fieldset class = 'form-group'>
             <legend class = "border-bottom mb-4">
-              EditProfile
+              Edit Your Profile
             </legend>
               {{form|crispy}}
              <br>
