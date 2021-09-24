@@ -18,11 +18,13 @@ This is an application similar to awwwards where users are able to see projects
 - Users can also edit their profile
 
 ### Deployed link
-https://awadhdds.herokuapp.com/
+[Live Link](https://awadhdds.herokuapp.com/) 
+
 
 ##### Cloning the repository:
 
-https://github.com/Awadh-Awadh/Awardddds
+[Repo Link](https://github.com/Awadh-Awadh/Awardddds)
+
 
 #### Install and activate Virtual
  ```bash 
@@ -60,6 +62,7 @@ Open the application on your browser `127.0.0.1:8000`.
 * [Python3.8](https://www.python.org/)  
 * [Django 3.2.1](https://docs.djangoproject.com/en/3.0/) 
 * [Heroku](https://heroku.com)  
+* [Django_restframework](https://www.django-rest-framework.org/)
 * [Git](for version control)
 
 ## License
